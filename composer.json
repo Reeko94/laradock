@@ -1,5 +1,6 @@
 {
     "name": "scolabs/docker",
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "version": "1.0"
 }
