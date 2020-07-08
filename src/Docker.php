@@ -66,7 +66,21 @@ class Docker
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $server_output = curl_exec($ch);
         curl_close ($ch);
-    }  
+    }
+
+    public function renameContainer(string $idContainer, string $name)
+    {
+        $ch = $this->getConfig();
+
+        curl_setopt($ch, CURLOPT_URL,"http:/v1.40/containers/" . $idContainer . "/rename");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS,
+        "name=". $name);
+        $server_output = curl_exec($ch);
+
+        curl_close ($ch);
+    }
 
     /**
      * @return mixed

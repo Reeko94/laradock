@@ -48,6 +48,12 @@ class ClientController extends Controller
         return redirect('containers');
     }
 
+    public function renameContainer($id, Request $request){
+        $docker = new Docker();
+        $docker->renameContainer($id, $request->post("name"));
+        return redirect('containers');
+    }
+
     /**
      * @param $d
      * @return array
