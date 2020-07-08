@@ -23,12 +23,15 @@
                     <div class="card-body">
                         <span class="badge badge-primary mb-4">{{ $c['Image'] }}</span>
                         @foreach ($c['Names'] as $name)
-                            <h4 class="text-center">{{ substr($name,1) }}</h4>
+                        <form method="POST" action="{{url("/renameContainer/{$c['Id']}")}}">
+                            <input type="text" name="name" class="text-center form-control" value="{{ substr($name,1) }}"/>
+                        </form>
                         @endforeach
                         <small style="font-style: italic">{{$c['Id']}}</small>
                         <p>{{ $c['Command'] }}</p>
                         <p>{{ $c['Status'] }}</p>
                         <a href="{{url("/container/{$c['Id']}")}}" class="btn btn-success btn-rounded">See more</a>
+                        <a class="btn btn-danger btn-rounded" onclick="return confirm('Are you sure?')" href="{{url("/stopContainer/{$c['Id']}")}}">Stop Container</a>
                     </div>
                 </div>
             </div>
