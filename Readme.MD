@@ -1,7 +1,7 @@
 # Requirements
 
 ### -  Docker installed
-### - Laravel >= 7
+## In case you are using Laravel inside of a Docker Container, you must follow these steps :
 ### - add volumes in the docker container which is using this package :
       - /var/run:/var/run
       - /var/lib/docker/:/var/lib/docker
