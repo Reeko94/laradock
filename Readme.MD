@@ -5,12 +5,14 @@
 ### - add volumes in the docker container which is using this package :
       - /var/run:/var/run
       - /var/lib/docker/:/var/lib/docker
-### God mod on docker.sock file
+### God mod on docker.sock file inside your docker container
       - chmod 777 /var/run/docker.sock
 
 # Installation
-```shell script
-composer require 'scolabs/docker'
+
+```
+- composer require 'scolabs/docker'
+- Edit your config/app.php and add 'Scolabs\Docker\DockerServiceProvider::class' in providers array
 ```
 
 # Usage
