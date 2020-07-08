@@ -28,6 +28,7 @@
                         <small style="font-style: italic">{{$c['Id']}}</small>
                         <p>{{ $c['Command'] }}</p>
                         <p>{{ $c['Status'] }}</p>
+                        <a class="btn btn-danger btn-rounded" onclick="return confirm('Are you sure?')" href="{{url("/stopContainer/{$c['Id']}")}}">Stop Container</a>
                     </div>
                 </div>
             </div>

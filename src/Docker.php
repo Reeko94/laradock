@@ -57,6 +57,17 @@ class Docker
         curl_exec($ch);
     }
 
+    public function stopContainer(string $idContainer)
+    {
+        $ch = $this->getConfig();
+
+        curl_setopt($ch, CURLOPT_URL,"http:/v1.40/containers/" . $idContainer . "/stop");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close ($ch);
+    }  
+
     /**
      * @return mixed
      */
@@ -72,7 +83,6 @@ class Docker
     {
         return $this->container;
     }
-
 
     /**
      * @return false|resource

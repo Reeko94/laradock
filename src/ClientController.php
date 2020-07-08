@@ -41,6 +41,13 @@ class ClientController extends Controller
         }
     }
 
+    public function stopContainer($id){
+        $docker = new Docker();
+        $docker->stopContainer($id);
+
+        return redirect('containers');
+    }
+
     /**
      * @param $d
      * @return array
