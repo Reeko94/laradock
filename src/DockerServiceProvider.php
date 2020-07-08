@@ -17,6 +17,7 @@ class DockerServiceProvider extends ServiceProvider
     {
         $this->app->make(ClientController::class);
         $this->loadViewsFrom(__DIR__ . '/views', 'docker');
+        $this->loadTranslationsFrom(__DIR__ . '/translations', 'docker');
     }
 
     /**
@@ -26,6 +27,6 @@ class DockerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        include  __DIR__.'/routes.php';
+        include __DIR__ . '/routes.php';
     }
 }

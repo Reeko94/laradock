@@ -28,6 +28,7 @@
                         <small style="font-style: italic">{{$c['Id']}}</small>
                         <p>{{ $c['Command'] }}</p>
                         <p>{{ $c['Status'] }}</p>
+                        <a href="{{url("/container/{$c['Id']}")}}" class="btn btn-success btn-rounded">See more</a>
                     </div>
                 </div>
             </div>

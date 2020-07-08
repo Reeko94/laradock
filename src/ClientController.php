@@ -10,6 +10,17 @@ use Illuminate\View\View;
 
 class ClientController extends Controller
 {
+
+    /**
+     * @var Docker
+     */
+    protected $docker;
+
+    public function __construct(Docker $docker)
+    {
+        $this->docker = $docker;
+    }
+
     /**
      * @return Application|Factory|View
      */
@@ -39,6 +50,20 @@ class ClientController extends Controller
         } else {
             return view ('docker::index', compact('containers', 'singleContainer'));
         }
+    }
+
+    /**
+     * @param $idContainer
+     * @return Application|Factory|View
+     */
+    public function show($idContainer)
+    {
+        while (is_null($this->docker->getContainer())) {
+            $this->docker->getInfoAboutContainer($idContainer);
+        }
+
+        $container = $this->objectToArray($this->docker->getContainer());
+        return view("docker::show", compact('container'));
     }
 
     /**
