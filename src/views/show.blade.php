@@ -41,8 +41,8 @@
         <table class="table table-dark mt-4">
             <thead>
             <tr>
-                <th>Dossier distant</th>
                 <th>Dossier local</th>
+                <th>Dossier distant</th>
                 <th>Droits d'écriture</th>
             </tr>
             </thead>
@@ -52,6 +52,23 @@
                     <td>{{explode(':',$volume)[0]}}</td>
                     <td>{{explode(':',$volume)[1]}}</td>
                     <td>{{explode(':',$volume)[2] ?? ''}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        <h4>Ports</h4>
+        <table class="table table-dark mt-4 text-center">
+            <thead>
+            <tr>
+                <th>Port Local</th>
+                <th>Port distant</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($container['HostConfig']['PortBindings'] as $distant => $port)
+                <tr>
+                    <td>{{$port[0]['HostPort']}}</td>
+                    <td>{{$distant}}</td>
                 </tr>
             @endforeach
             </tbody>

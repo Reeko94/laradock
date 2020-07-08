@@ -27,41 +27,28 @@ class ClientController extends Controller
     public function index()
     {
         set_time_limit(0);
-        $docker = new Docker();
-        if (isset($_POST['containerid'])) {
 
-            while (is_null($docker->getContainer())) {
-                $docker->getInfoAboutContainer($_POST['containerid']);
-            }
+        $this->docker->getContainersFromDocker();
 
-            $singleContainer = $this->objectToArray($docker->getContainer());
+        while (is_null($this->docker->getContainers())) {
+            $this->docker->getContainersFromDocker();
         }
 
-        $docker->getContainersFromDocker();
+        $containers = $this->objectToArray($this->docker->getContainers());
 
-        while (is_null($docker->getContainers())) {
-            $docker->getContainersFromDocker();
-        }
-
-        $containers = $this->objectToArray($docker->getContainers());
-
-        if (!isset($singleContainer)){
-            return view('docker::index', compact('containers'));
-        } else {
-            return view ('docker::index', compact('containers', 'singleContainer'));
-        }
+        return view('docker::index', compact('containers'));
     }
 
-    public function stopContainer($id){
-        $docker = new Docker();
-        $docker->stopContainer($id);
+    public function stopContainer($id)
+    {
+        $this->docker->stopContainer($id);
 
         return redirect('containers');
     }
 
-    public function renameContainer($id, Request $request){
-        $docker = new Docker();
-        $docker->renameContainer($id, $request->post("name"));
+    public function renameContainer($id, Request $request)
+    {
+        $this->docker->renameContainer($id, $request->post("name"));
         return redirect('containers');
     }
 
